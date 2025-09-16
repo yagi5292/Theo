@@ -5,6 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create a new repository - GitHub Theo</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #f6f8fa;
+        }
+        .dashboard-header {
+            background: #24292f;
+            color: #fff;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #23272c;
+        }
+        .dashboard-header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .dashboard-nav a {
+            color: #c9d1d9;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+        .dashboard-nav a:hover {
+            color: #fff;
+        }
+        .dashboard-user {
+            display: flex;
+            align-items: center;
+        }
+        .dashboard-user-avatar {
+            width: 32px;
+            height: 32px;
+            background: #bbb;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .dashboard-main {
+            padding: 40px 0 0 0;
+        }
+        .repo-form {
+            background: #fff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 32px 32px 24px 32px;
+            max-width: 540px;
+            margin: 32px auto 0 auto;
+            box-shadow: 0 1px 3px rgba(27,31,35,0.04);
+        }
+        .repo-form h2 {
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 22px;
+        }
+        .form-group label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+            color: #24292f;
+        }
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            font-size: 15px;
+            background: #f6f8fa;
+            transition: border 0.2s;
+        }
+        .form-group input[type="text"]:focus {
+            border: 1.5px solid #0969da;
+            outline: none;
+            background: #fff;
+        }
+        .radio-group {
+            display: flex;
+            gap: 24px;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        .radio-option input[type="radio"] {
+            margin-right: 6px;
+        }
+        .btn-primary {
+            background: #2da44e;
+            color: #fff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .btn-primary:hover {
+            background: #218838;
+        }
+        .repo-form p {
+            color: #57606a;
+            margin: 0.5rem 0 0 0;
+            font-size: 0.95rem;
+        }
+        .footer {
+            margin-top: 48px;
+        }
+        @media (max-width: 600px) {
+            .repo-form {
+                padding: 18px 8px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="dashboard-header">
@@ -33,24 +148,24 @@
 
     <main class="dashboard-main">
         <div class="container">
-            <h2>Create a new repository</h2>
-            <p>A repository contains all project files, including the revision history.</p>
-            
             <form id="repoForm" class="repo-form">
+                <h2 style="margin-bottom: 4px;">Create a new repository</h2>
+                <p style="margin-bottom: 24px;">A repository contains all project files, including the revision history. <br>Already have a project repository elsewhere? <a href="#" style="color:#0969da;text-decoration:none;">Import a repository</a></p>
+                
                 <div class="form-group">
                     <label for="repoOwner">Owner</label>
                     <input type="text" id="repoOwner" value="" disabled>
                 </div>
                 
                 <div class="form-group">
-                    <label for="repoName">Repository name</label>
-                    <input type="text" id="repoName" name="repoName" required>
+                    <label for="repoName">Repository name <span style="color:#cf222e">*</span></label>
+                    <input type="text" id="repoName" name="repoName" required autocomplete="off" placeholder="e.g. hello-world">
                     <p style="font-size: 0.9rem; margin-top: 0.5rem;">Great repository names are short and memorable.</p>
                 </div>
                 
                 <div class="form-group">
-                    <label for="repoDescription">Description (optional)</label>
-                    <input type="text" id="repoDescription" name="repoDescription">
+                    <label for="repoDescription">Description <span style="color:#57606a;font-weight:400;">(optional)</span></label>
+                    <input type="text" id="repoDescription" name="repoDescription" placeholder="What's this repository about?">
                 </div>
                 
                 <div class="form-group">
@@ -58,12 +173,28 @@
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="repoPublic" name="repoVisibility" value="public" checked>
-                            <label for="repoPublic">Public</label>
+                            <label for="repoPublic">Public <span style="color:#57606a;font-weight:400;">Anyone on the internet can see this repository.</span></label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="repoPrivate" name="repoVisibility" value="private">
-                            <label for="repoPrivate">Private</label>
+                            <label for="repoPrivate">Private <span style="color:#57606a;font-weight:400;">You choose who can see and commit to this repository.</span></label>
                         </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 18px;">
+                    <label style="font-weight:600;">Initialize this repository with:</label>
+                    <div style="margin-top:8px;">
+                        <input type="checkbox" id="readme" name="readme">
+                        <label for="readme" style="font-weight:400;">Add a README file</label>
+                    </div>
+                    <div style="margin-top:6px;">
+                        <input type="checkbox" id="gitignore" name="gitignore">
+                        <label for="gitignore" style="font-weight:400;">Add .gitignore</label>
+                    </div>
+                    <div style="margin-top:6px;">
+                        <input type="checkbox" id="license" name="license">
+                        <label for="license" style="font-weight:400;">Choose a license</label>
                     </div>
                 </div>
                 
@@ -82,5 +213,13 @@
 
     <script src="auth.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Example: Set owner name from user (replace with real logic)
+        document.addEventListener('DOMContentLoaded', function() {
+            const userName = localStorage.getItem('userName') || 'your-username';
+            document.getElementById('repoOwner').value = userName;
+            document.getElementById('userName').textContent = userName;
+        });
+    </script>
 </body>
 </html>

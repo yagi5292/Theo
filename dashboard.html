@@ -5,6 +5,228 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - GitHub Theo</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f6f8fa;
+        }
+        .dashboard-header {
+            background: #24292f;
+            color: #fff;
+            padding: 0;
+            border-bottom: 1px solid #23272c;
+        }
+        .dashboard-header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .dashboard-header-content {
+            display: flex;
+            align-items: center;
+            height: 64px;
+        }
+        .logo {
+            margin-right: 32px;
+        }
+        .dashboard-nav {
+            display: flex;
+            gap: 24px;
+            flex: 1;
+        }
+        .dashboard-nav a {
+            color: #c9d1d9;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .dashboard-nav a:hover,
+        .dashboard-nav a.active {
+            color: #fff;
+            border-bottom: 2px solid #f78166;
+        }
+        .dashboard-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .dashboard-user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #238636;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #userName {
+            font-weight: 500;
+            font-size: 15px;
+        }
+        .btn {
+            background: #238636;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .btn-primary {
+            background: #238636;
+        }
+        .btn-primary:hover {
+            background: #2ea043;
+        }
+        .btn-secondary {
+            background: #30363d;
+        }
+        .btn-secondary:hover {
+            background: #484f58;
+        }
+        .dashboard-main .container {
+            max-width: 900px;
+            margin: 32px auto 0 auto;
+            background: #fff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 32px;
+            box-shadow: 0 1px 3px rgba(27,31,35,0.04);
+        }
+        .create-repo-btn {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 16px;
+        }
+        .repo-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .repo-item {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #e1e4e8;
+            padding: 24px 0;
+        }
+        .repo-item:last-child {
+            border-bottom: none;
+        }
+        .repo-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .repo-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0969da;
+            text-decoration: none;
+        }
+        .repo-title:hover {
+            text-decoration: underline;
+        }
+        .repo-private {
+            background: #6a737d;
+            color: #fff;
+            font-size: 12px;
+            border-radius: 2em;
+            padding: 2px 10px;
+            margin-left: 8px;
+        }
+        .repo-desc {
+            color: #57606a;
+            margin: 8px 0 4px 0;
+            font-size: 15px;
+        }
+        .repo-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 13px;
+            color: #57606a;
+        }
+        .repo-meta .repo-lang {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .repo-lang-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            background: #f1e05a;
+        }
+        .star-btn {
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            color: #24292f;
+            border-radius: 6px;
+            padding: 4px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-left: auto;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .star-btn:hover {
+            background: #eaecef;
+        }
+        .footer {
+            background: #f6f8fa;
+            color: #57606a;
+            padding: 24px 0 0 0;
+            margin-top: 48px;
+            border-top: 1px solid #e1e4e8;
+        }
+        .footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .footer-bottom {
+            text-align: center;
+            font-size: 14px;
+            padding-bottom: 16px;
+        }
+        @media (max-width: 1000px) {
+            .dashboard-main .container {
+                padding: 16px;
+            }
+        }
+        @media (max-width: 700px) {
+            .dashboard-header-content {
+                flex-direction: column;
+                height: auto;
+                gap: 12px;
+                align-items: flex-start;
+                padding: 12px 0;
+            }
+            .dashboard-main .container {
+                padding: 8px;
+            }
+            .repo-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+            .star-btn {
+                margin-left: 0;
+                margin-top: 8px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="dashboard-header">
@@ -16,14 +238,14 @@
                     </svg>
                 </div>
                 <nav class="dashboard-nav">
-                    <a href="#">Overview</a>
+                    <a href="#" class="active">Overview</a>
                     <a href="#">Repositories</a>
                     <a href="#">Projects</a>
                     <a href="#">Packages</a>
                     <a href="#">Stars</a>
                 </nav>
                 <div class="dashboard-user">
-                    <div class="dashboard-user-avatar"></div>
+                    <div class="dashboard-user-avatar" id="userAvatar"></div>
                     <span id="userName"></span>
                     <button id="logoutBtn" class="btn btn-secondary" style="margin-left: 10px;">Logout</button>
                 </div>
@@ -34,10 +256,14 @@
     <main class="dashboard-main">
         <div class="container">
             <div class="create-repo-btn">
-                <a href="repository.html" class="btn btn-primary">Create repository</a>
+                <a href="repository.html" class="btn btn-primary">
+                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" width="16" style="vertical-align:middle;margin-right:6px;">
+                        <path fill="currentColor" d="M7.75 1.75a.75.75 0 0 1 1.5 0v5.5h5.5a.75.75 0 0 1 0 1.5h-5.5v5.5a.75.75 0 0 1-1.5 0v-5.5h-5.5a.75.75 0 0 1 0-1.5h5.5v-5.5z"></path>
+                    </svg>
+                    Create repository
+                </a>
             </div>
-            
-            <h2>Your repositories</h2>
+            <h2 style="margin-bottom:24px;">Your repositories</h2>
             <ul id="repoList" class="repo-list">
                 <!-- Repositories will be loaded here -->
             </ul>
@@ -52,7 +278,93 @@
         </div>
     </footer>
 
-    <script src="auth.js"></script>
-    <script src="script.js"></script>
+    <script>
+    // Example user data
+    const user = {
+        name: 'Theo',
+        avatarUrl: '', // If you have a URL, put it here
+    };
+
+    // Set user avatar and name in header
+    document.addEventListener('DOMContentLoaded', function() {
+        const avatar = document.getElementById('userAvatar');
+        const name = document.getElementById('userName');
+        if (user.avatarUrl) {
+            avatar.innerHTML = `<img src="${user.avatarUrl}" alt="${user.name}" style="width:36px;height:36px;border-radius:50%;">`;
+        } else {
+            avatar.textContent = user.name.charAt(0).toUpperCase();
+        }
+        name.textContent = user.name;
+
+        // Render repositories (example)
+        renderRepos(exampleRepos);
+    });
+
+    // Logout logic - FIXED
+    document.getElementById('logoutBtn').onclick = function() {
+        // Remove user session data
+        localStorage.removeItem('google_access_token');
+        localStorage.removeItem('githubCloneUser');
+        // Redirect to login page
+        window.location.href = 'login.html';
+    };
+
+    // Example repositories (replace with your dynamic data)
+    const exampleRepos = [
+        {
+            name: "theo-website",
+            desc: "Personal portfolio and blog built with HTML, CSS, and JS.",
+            private: false,
+            language: "JavaScript",
+            langColor: "#f1e05a",
+            updated: "2025-09-10",
+            stars: 3
+        },
+        {
+            name: "school-management",
+            desc: "A simple school management system for demo purposes.",
+            private: true,
+            language: "PHP",
+            langColor: "#4F5D95",
+            updated: "2025-08-22",
+            stars: 0
+        }
+    ];
+
+    // Render repositories
+    function renderRepos(repos) {
+        const repoList = document.getElementById('repoList');
+        repoList.innerHTML = '';
+        if (!repos.length) {
+            repoList.innerHTML = '<li style="color:#57606a;">No repositories yet.</li>';
+            return;
+        }
+        repos.forEach(repo => {
+            const li = document.createElement('li');
+            li.className = 'repo-item';
+            li.innerHTML = `
+                <div class="repo-header">
+                    <a href="repository.html?name=${encodeURIComponent(repo.name)}" class="repo-title">${repo.name}</a>
+                    ${repo.private ? '<span class="repo-private">Private</span>' : ''}
+                    <button class="star-btn" onclick="alert('Star functionality coming soon!')">
+                        <svg aria-label="star" height="16" viewBox="0 0 16 16" width="16" style="vertical-align:middle;">
+                            <path fill="currentColor" d="M8 12.027l-3.717 2.21.711-4.16-3.02-2.944 4.175-.606L8 2.5l1.851 3.997 4.175.606-3.02 2.944.711 4.16z"></path>
+                        </svg>
+                        Star${repo.stars ? ` <span>(${repo.stars})</span>` : ''}
+                    </button>
+                </div>
+                <div class="repo-desc">${repo.desc || ''}</div>
+                <div class="repo-meta">
+                    <span class="repo-lang">
+                        <span class="repo-lang-color" style="background:${repo.langColor};"></span>
+                        ${repo.language}
+                    </span>
+                    <span>Updated on ${new Date(repo.updated).toLocaleDateString()}</span>
+                </div>
+            `;
+            repoList.appendChild(li);
+        });
+    }
+    </script>
 </body>
 </html>
